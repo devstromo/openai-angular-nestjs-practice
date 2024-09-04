@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ChatMessageComponent } from '../../components/chat-bubbles/chatMessage/chatMessage.component';
-import { MyMessageComponent } from '../../components/chat-bubbles/myMessage/myMessage.component';
+import { ChatMessageComponent, MyMessageComponent } from '@components/index';
+
 
 @Component({
   selector: 'app-orthography-page',
