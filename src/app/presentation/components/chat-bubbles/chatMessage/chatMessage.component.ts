@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-message',
@@ -10,4 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './chatMessage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatMessageComponent { }
+export class ChatMessageComponent {
+
+  @Input({ required: true }) text!: string;
+}
