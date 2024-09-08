@@ -12,5 +12,8 @@
   </div>
 
   <!-- Message Box -->
-  <app-text-message-box/>
+  <app-text-message-box 
+    placeholder="Escribe el texto que deseas"
+    (onMessage)="handleMessage($event)"
+  />
 </div>
