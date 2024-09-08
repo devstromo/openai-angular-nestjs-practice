@@ -7,12 +7,16 @@
       <app-my-message text="Hola Mundo" />
 
       <app-typing-loader />
-
     </div>
   </div>
 
   <!-- Message Box -->
-  <app-text-message-box 
+  <!-- <app-text-message-box
+    placeholder="Escribe el texto que deseas"
+    (onMessage)="handleMessage($event)"
+  /> -->
+
+  <app-text-message-box-file
     placeholder="Escribe el texto que deseas"
     (onMessage)="handleMessage($event)"
   />

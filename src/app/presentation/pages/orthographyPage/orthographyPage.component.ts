@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, TypingLoaderComponent } from '@components/index';
+import { TextMessageBoxFileComponent } from "../../components/text-boxes/textMessageBoxFile/textMessageBoxFile.component";
 
 
 @Component({
@@ -12,7 +13,8 @@ import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, Typi
     MyMessageComponent,
     TextMessageBoxComponent,
     TypingLoaderComponent,
-  ],
+    TextMessageBoxFileComponent,
+],
   templateUrl: './orthographyPage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
