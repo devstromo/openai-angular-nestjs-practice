@@ -4,9 +4,17 @@
       <!-- Chat messages -->
       <app-chat-message text="Escribe el texto que quieres que revise?" />
 
-      <app-my-message text="Hola Mundo" />
+      @for (message of messages(); track $index) {
+        @if(message.isGpt){
+          <app-chat-message [text]="message.text" />
+        } @else {
+          <app-my-message [text]="message.text" />
+        }
+      }
 
+      @if (isLoading()) {
       <app-typing-loader />
+      }
     </div>
   </div>
 

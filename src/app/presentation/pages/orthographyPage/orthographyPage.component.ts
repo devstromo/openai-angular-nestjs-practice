@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, TextMessageBoxEvent, TextMessageBoxFileComponent, TextMessageBoxSelectComponent, TextMessageEvent, TypingLoaderComponent } from '@components/index';
+import { Message } from '@interfaces/message.interface';
 
 
 
@@ -21,6 +22,8 @@ import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, Text
 })
 export default class OrthographyPageComponent {
 
+  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: true }]);
+  public isLoading = signal(false);
 
   handleMessage(prompt: string) {
     console.log({ prompt });
@@ -32,7 +35,7 @@ export default class OrthographyPageComponent {
   }
 
   handleMessageWithSelect(event: TextMessageBoxEvent) {
-    console.log({event});
-    
+    console.log({ event });
+
   }
 }
