@@ -24,6 +24,7 @@ export interface TextMessageBoxEvent {
 })
 export class TextMessageBoxSelectComponent {
   @Input() placeholder: string = '';
+  @Input({required: true}) options: Option[] = [];
 
   @Output() onMessage = new EventEmitter<TextMessageBoxEvent>();
 
