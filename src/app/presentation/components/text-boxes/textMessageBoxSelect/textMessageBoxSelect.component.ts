@@ -14,7 +14,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class TextMessageBoxSelectComponent {
   @Input() placeholder: string = '';
-  @Input() disableCorrections: boolean = false;
 
   @Output() onMessage = new EventEmitter<string>();
 
