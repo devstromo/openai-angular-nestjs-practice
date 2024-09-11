@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, TextMessageBoxFileComponent, TextMessageEvent, TypingLoaderComponent } from '@components/index';
+import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, TextMessageBoxFileComponent, TextMessageBoxSelectComponent, TextMessageEvent, TypingLoaderComponent } from '@components/index';
 
 
 
@@ -13,7 +13,8 @@ import { ChatMessageComponent, MyMessageComponent, TextMessageBoxComponent, Text
     MyMessageComponent,
     TextMessageBoxComponent,
     TypingLoaderComponent,
-    TextMessageBoxFileComponent
+    TextMessageBoxFileComponent,
+    TextMessageBoxSelectComponent
   ],
   templateUrl: './orthographyPage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,6 +28,10 @@ export default class OrthographyPageComponent {
   }
   handleMessageWithFile({ prompt, file }: TextMessageEvent) {
     console.log({ prompt, file });
+
+  }
+
+  handleMessageWithSelect() {
 
   }
 }
