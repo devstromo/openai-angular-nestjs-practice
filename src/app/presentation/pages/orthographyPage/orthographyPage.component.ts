@@ -28,16 +28,13 @@ export default class OrthographyPageComponent {
   public OpenAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
-    console.log({ prompt });
-
+    this.isLoading.set(true);
+    this.messages.update((prev) => [...prev, { text: prompt, isGpt: false }]);
+    this.OpenAiService.checkOrthography(prompt)
+      .subscribe(resp => {
+        this.isLoading.set(false);
+        this.messages.update((messages) => [...messages, { text: resp.message, isGpt: true }]);
+      })
   }
-  handleMessageWithFile({ prompt, file }: TextMessageEvent) {
-    console.log({ prompt, file });
 
-  }
-
-  handleMessageWithSelect(event: TextMessageBoxEvent) {
-    console.log({ event });
-
-  }
 }
