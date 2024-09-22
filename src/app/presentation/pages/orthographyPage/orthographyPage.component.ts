@@ -23,7 +23,7 @@ import { OpenAiService } from '../../services/openai.service';
 })
 export default class OrthographyPageComponent {
 
-  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: true }]);
+  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: false }]);
   public isLoading = signal(false);
   public OpenAiService = inject(OpenAiService);
 
