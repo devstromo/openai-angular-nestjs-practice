@@ -33,7 +33,7 @@ export default class OrthographyPageComponent {
     this.OpenAiService.checkOrthography(prompt)
       .subscribe(resp => {
         this.isLoading.set(false);
-        this.messages.update((messages) => [...messages, { text: resp.message, isGpt: true }]);
+        this.messages.update((messages) => [...messages, { text: resp.message, isGpt: true, info: resp }]);
       })
   }
 
