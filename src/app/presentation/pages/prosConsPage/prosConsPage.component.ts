@@ -23,7 +23,19 @@ export default class ProsConsPageComponent {
   public OpenAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
-    console.log({ prompt });
+    this.isLoading.set(true);
+    this.messages.update((prev) => [...prev, { text: prompt, isGpt: false }]);
+    this.OpenAiService.prosConsDiscusser(prompt)
+      .subscribe(resp => {
+        this.isLoading.set(false);
+        this.messages.update((prev) => [
+          ...prev,
+          {
+            text: resp.content,
+            isGpt: true
+          }
+        ]);
+      })
 
   }
- }
+}
