@@ -24,12 +24,17 @@ export default class ProsConsStreamPageComponent {
   public isLoading = signal(false);
   public OpenAiService = inject(OpenAiService);
 
+  public abortSignal = new AbortController();
+
   async handleMessage(prompt: string) {
+    this.abortSignal.abort();
+    this.abortSignal = new AbortController();
+
     this.messages.update((prev) => [...prev, { text: prompt, isGpt: false }]);
     this.messages.update((prev) => [...prev, { text: '...', isGpt: true }]);
 
     this.isLoading.set(true);
-    const stream = this.OpenAiService.prosConsStream(prompt);
+    const stream = this.OpenAiService.prosConsStream(prompt, this.abortSignal.signal);
     this.isLoading.set(false);
     for await (const text of stream) {
       this.handleStreamResponse(text);
@@ -43,4 +48,6 @@ export default class ProsConsStreamPageComponent {
 
     this.messages.set([...messages, { text: message, isGpt: true }]);
   }
+
+
 }
