@@ -20,7 +20,7 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatTemplateComponent {
-  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: true }]);
+  public messages = signal<Message[]>([]);
   public isLoading = signal(false);
   public OpenAiService = inject(OpenAiService);
 
