@@ -16,8 +16,8 @@
 
   <!-- Message Box -->
   <app-text-message-box-select
-    [options]="[]"
-    placeholder="Escribe el texto que deseas"
+    [options]="languages()"
+    placeholder="Escribe el texto que deseas traducir"
     (onMessage)="handleMessageWithSelect($event)"
   />
 </div>
