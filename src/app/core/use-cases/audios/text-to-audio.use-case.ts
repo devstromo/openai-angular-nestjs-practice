@@ -1,6 +1,6 @@
 import { environment } from "environments/environment.development";
 
-export const textToAudioUserCase = async (prompt: string, voice: string) => {
+export const textToAudioUseCase = async (prompt: string, voice: string) => {
 
     try {
         const resp = await fetch(
