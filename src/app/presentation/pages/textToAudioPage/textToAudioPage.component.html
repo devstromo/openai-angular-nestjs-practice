@@ -5,7 +5,7 @@
       <app-chat-message text="Escribe el texto que quieres que revise?" />
 
       @for (message of messages(); track $index) { @if(message.isGpt){
-      <app-chat-message [text]="message.text" />
+      <app-chat-message [text]="message.text" [audioUrl]="message.audioUrl"/>
       } @else {
       <app-my-message [text]="message.text" />
       } } @if (isLoading()) {
@@ -16,7 +16,7 @@
 
   <!-- Message Box -->
   <app-text-message-box-select
-    [options]="[]"
+    [options]="voices()"
     placeholder="Escribe el texto que deseas"
     (onMessage)="handleMessageWithSelect($event)"
   />
