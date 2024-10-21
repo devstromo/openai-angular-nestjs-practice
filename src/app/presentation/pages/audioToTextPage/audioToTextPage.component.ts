@@ -5,6 +5,8 @@ import { ChatMessageComponent, MyMessageComponent, TypingLoaderComponent, TextMe
 import { Message } from '@interfaces/message.interface';
 import { OpenAiService } from 'app/presentation/services/openai.service';
 import { TextMessageBoxFileComponent } from "../../components/text-boxes/textMessageBoxFile/textMessageBoxFile.component";
+import { AudioToTextResponse } from '@interfaces/audio-to-text.response';
+import { Segment } from '../../../interfaces/audio-to-text.response';
 
 @Component({
   selector: 'app-audio-to-text-page',
@@ -16,21 +18,44 @@ import { TextMessageBoxFileComponent } from "../../components/text-boxes/textMes
     MyMessageComponent,
     TypingLoaderComponent,
     TextMessageBoxFileComponent
-],
+  ],
   templateUrl: './audioToTextPage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AudioToTextPageComponent {
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
-  public OpenAiService = inject(OpenAiService);
+  public openAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
     console.log({ prompt });
 
   }
   handleMessageWithFile({ prompt, file }: TextMessageEvent) {
-    console.log({ prompt, file });
+    const text = prompt ?? file.name ?? 'Traduce el audio';
+    this.isLoading.set(true);
+
+    this.messages.update(prev => [...prev, { isGpt: false, text }])
+    this.openAiService.audioToText(file, text)
+      .subscribe(resp => this.handleResponse(resp));
   }
 
+  handleResponse(response: AudioToTextResponse | null) {
+    this.isLoading.set(false)
+    if (!response) return;
+    const text = `## Transcipción:
+    __Duración:__ ${Math.round(response.duration)} segundos
+    ## El texto es:
+    ${response.text}
+    `;
+    this.messages.update(prev => [...prev, { isGpt: true, text: text }])
+
+    for (const segment of response.segments) {
+      const segmentMessage = `
+__De ${Math.round(segment.start)} a ${Math.round(segment.end)} segundos.__
+${segment.text}
+      `
+      this.messages.update(prev => [...prev, { isGpt: true, text: segmentMessage }])
+    }
+  }
 }
