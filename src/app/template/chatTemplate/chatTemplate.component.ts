@@ -22,7 +22,7 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
 export class ChatTemplateComponent {
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
-  public OpenAiService = inject(OpenAiService);
+  public openAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
     console.log({ prompt });
