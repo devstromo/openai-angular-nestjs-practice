@@ -15,4 +15,6 @@ export class ChatMessageComponent {
   @Input({ required: true }) text!: string;
 
   @Input({ required: false }) audioUrl?: string;
+
+  @Input({ required: false }) imageInfo?: { url: string, alt: string };
 }
