@@ -22,10 +22,18 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
 export default class ImageGenerationPageComponent {
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
-  public OpenAiService = inject(OpenAiService);
+  public openAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
-    console.log({ prompt });
+    this.isLoading.set(true);
+    this.messages.update(prev => [...prev, { isGpt: false, text: prompt }]);
+    this.openAiService.imageGeneration(prompt)
+      .subscribe(resp => {
+        this.isLoading.set(false);
+        if (!resp) return;
+
+        this.messages.update(prev => [...prev, { isGpt: true, text: resp.alt, imageInfo: resp }])
+      })
 
   }
 }
