@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ChatMessageComponent, MyMessageComponent, TypingLoaderComponent, TextMessageBoxComponent } from '@components/index';
+import { ChatMessageComponent, MyMessageComponent, TypingLoaderComponent, TextMessageBoxComponent, GptMessageEditableImageComponent } from '@components/index';
 import { Message } from '@interfaces/message.interface';
 import { OpenAiService } from 'app/presentation/services/openai.service';
 
@@ -15,11 +15,13 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
     MyMessageComponent,
     TypingLoaderComponent,
     TextMessageBoxComponent,
+    GptMessageEditableImageComponent,
   ],
   templateUrl: './imageTunningPage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ImageTunningPageComponent {
+
 
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
@@ -40,7 +42,14 @@ export default class ImageTunningPageComponent {
 
   }
 
+
+  handleImageChange(newImage: string, originalImage: string) {
+    this.originalImage.set(originalImage);
+    //Todo: add mask
+  }
+
   generateVariation() {
     throw new Error('Method not implemented.');
   }
+
 }
