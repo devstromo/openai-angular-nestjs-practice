@@ -23,7 +23,16 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
 export default class ImageTunningPageComponent {
 
 
-  public messages = signal<Message[]>([]);
+  public messages = signal<Message[]>([
+    {
+      isGpt: true,
+      text: 'Dummy image',
+      imageInfo: {
+        alt: 'Dummy image',
+        url: 'http://localhost:3000/gpt/image-generation/1731367324288.png'
+      }
+    }
+  ]);
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
 
