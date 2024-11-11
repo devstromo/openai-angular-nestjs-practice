@@ -18,7 +18,7 @@ export const imageVariationUseCase = async (
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                originalImage,
+                baseImage: originalImage,
             }),
         });
         const { url, revised_response: alt } = await response.json();
