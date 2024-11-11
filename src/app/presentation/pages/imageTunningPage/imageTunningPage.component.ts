@@ -51,14 +51,23 @@ export default class ImageTunningPageComponent {
 
   }
 
-
   handleImageChange(newImage: string, originalImage: string) {
     this.originalImage.set(originalImage);
     //Todo: add mask
   }
 
   generateVariation() {
-    throw new Error('Method not implemented.');
+    if (!this.originalImage()) {
+      return;
+    }
+    this.isLoading.set(true);
+    this.messages.update(prev => [...prev, { isGpt: false, text: 'Generando Variación de Imagen' }]);
+    this.openAiService.imageVariation(this.originalImage()!)
+      .subscribe(resp => {
+        this.isLoading.set(false);
+        if (!resp) return;
+        this.messages.update(prev => [...prev, { isGpt: true, text: resp.alt, imageInfo: resp }])
+      })
   }
 
 }
