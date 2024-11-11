@@ -1,3 +1,14 @@
+@if (originalImage()) {
+    <div class="fixed flex flex-col items-center top-10 right-10 z-10 fade-in">
+        <span>Editando</span>
+        <img [src]="originalImage()" alt="Imagen a editar" class="border rounded-xl w-36 h-36 object-contain"/>
+        <button 
+            (click)="generateVariation()"
+            class="btn-primary mt-2">
+            Generar variación
+        </button>
+    </div>
+}
 <div class="chat-container">
     <div class="chat-messages">
       <div class="grid gap-y-2">

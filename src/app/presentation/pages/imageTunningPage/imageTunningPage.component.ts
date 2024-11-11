@@ -20,9 +20,12 @@ import { OpenAiService } from 'app/presentation/services/openai.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ImageTunningPageComponent {
+
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
+
+  public originalImage = signal<string | undefined>(undefined);
 
   handleMessage(prompt: string) {
     this.isLoading.set(true);
@@ -35,5 +38,9 @@ export default class ImageTunningPageComponent {
         this.messages.update(prev => [...prev, { isGpt: true, text: resp.alt, imageInfo: resp }])
       })
 
+  }
+
+  generateVariation() {
+    throw new Error('Method not implemented.');
   }
 }
