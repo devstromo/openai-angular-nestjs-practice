@@ -54,7 +54,7 @@ export class GptMessageEditableImageComponent implements AfterViewInit {
   }
 
   onMouseMove(event: MouseEvent) {
-    if (!this.isDrawing) return;
+    if (!this.isDrawing()) return;
     if (!this.canvasElement?.nativeElement) return;
 
     const canvasRef = this.canvasElement.nativeElement;
@@ -83,7 +83,6 @@ export class GptMessageEditableImageComponent implements AfterViewInit {
     const canvas = this.canvasElement!.nativeElement;
 
     const url = canvas.toDataURL('image/png');
-    console.log({url});
     
     this.onSelectedImage.emit(url);
   }
