@@ -48,7 +48,6 @@ export class OpenAiService {
         return from(createThreadUseCase())
             .pipe(
                 tap((thread) => {
-                    console.log({ thread });
                     localStorage.setItem('threadId', thread)
                 })
             );
