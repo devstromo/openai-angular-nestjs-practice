@@ -5,7 +5,7 @@ import { environment } from "environments/environment";
 export const postQuestionUseCase = async (threadId: string, question: string) => {
     try {
         const resp = await fetch(
-            `${environment.assistantApi}/user-question`,
+            `${environment.assistantApi}/user-thread`,
             {
                 method: 'POST',
                 headers: {
