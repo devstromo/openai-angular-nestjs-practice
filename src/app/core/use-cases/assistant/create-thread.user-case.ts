@@ -1,4 +1,4 @@
-import { environment } from "environments/environment.development";
+import { environment } from "environments/environment";
 
 export const createThreadUseCase = async (prompt: string) => {
     try {
