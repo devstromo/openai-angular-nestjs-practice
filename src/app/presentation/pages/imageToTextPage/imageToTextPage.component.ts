@@ -23,11 +23,17 @@ export default class ImageToTextPageComponent {
   public messages = signal<Message[]>([]);
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
-  handleMessage(prompt: string) {
-    console.log({ prompt });
 
-  }
   handleMessageWithFile({ prompt, file }: TextMessageEvent) {
+    if (!file) return;
+    const text = prompt ?? file.name ?? 'Traduce la imagen';
+    this.isLoading.set(true);
+
+    this.messages.update(prev => [...prev, { isGpt: false, text }])
+    this.openAiService.imageToText(file, text).subscribe(message => {
+      this.isLoading.set(false);
+      this.messages.update(prev => [...prev, { isGpt: true, text: message! }])
+    });
 
   }
 }

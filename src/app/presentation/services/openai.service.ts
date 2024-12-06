@@ -57,7 +57,7 @@ export class OpenAiService {
         return from(postQuestionUseCase(threadId, question));
     }
 
-    imageToText(file: File, prompt: string) {
+    imageToText(file: File, prompt?: string) {
         return from(imageToTextUseCase(file, prompt));
     }
 }
