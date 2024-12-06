@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { audioToTextUseCase, createThreadUseCase, imageGenerationUseCase, imageVariationUseCase, orthographyUserCase, postQuestionUseCase, prosConsDiscusserUseCase, prosConsStreamUseCase, textToAudioUseCase, translateTextUseCase } from '@use-cases/index';
+import { audioToTextUseCase, createThreadUseCase, imageGenerationUseCase, imageToTextUseCase, imageVariationUseCase, orthographyUserCase, postQuestionUseCase, prosConsDiscusserUseCase, prosConsStreamUseCase, textToAudioUseCase, translateTextUseCase } from '@use-cases/index';
 import { Observable, from, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -55,5 +55,9 @@ export class OpenAiService {
 
     postQuestion(threadId: string, question: string) {
         return from(postQuestionUseCase(threadId, question));
+    }
+
+    imageToText(file: File, prompt: string) {
+        return from(imageToTextUseCase(file, prompt));
     }
 }

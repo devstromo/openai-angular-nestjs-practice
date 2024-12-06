@@ -8,3 +8,4 @@ export * from './image-generation/image-generation.use-case';
 export * from './image-generation/image-variation.use-case';
 export * from './assistant/create-thread.use-case';
 export * from './assistant/post-question.use-case';
+export * from './image/image-to-text.use-case';
