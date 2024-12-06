@@ -98,7 +98,6 @@ export const routes: Routes = [
           description: 'Generación continua',
         },
       },
-
       {
         path: 'assistant',
         loadComponent: () =>
@@ -110,10 +109,23 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'image-to-text',
+        loadComponent: () =>
+          import(
+            './presentation/pages/imageToTextPage/imageToTextPage.component'
+          ),
+        data: {
+          icon: 'fa-solid fa-comment-dots',
+          title: 'Imagen a texto',
+          description: 'Convertir imagen a texto',
+        },
+      },
+      {
         path: '**',
         redirectTo: 'orthography',
         pathMatch: 'full',
       },
+      
     ],
   },
 ];
